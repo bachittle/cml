@@ -1,12 +1,37 @@
 # cml-parser-gen
 codename caramel: C-style syntax markdown
 
-Requires JLex and JavaCup. Instructions to installing will be added later. 
+`index.html preview`
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- this is a comment -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello   world!</h1>
+</body>
+</html>
+```
 
-How to run?
-run these commands inside the folder you install this:
+`index.cml equivalent`
 ```
-java JLex.Main cml1.lex.java
-javac cml1.lex.java
-java cml
+import cml;
+
+cml(lang="en") {
+    head {
+        // this is a comment
+        meta(charset="utf-8");
+        meta(name="viewport", content="width=device-width, initial-scale=1.0");
+        title{document}
+    }
+    body {
+        h1{Hello world!}
+    }
+}
 ```
+
+checkout a branch for different content
