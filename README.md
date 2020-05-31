@@ -1,4 +1,4 @@
-# cml-parser-gen
+# cml (C-Style Markup Language / Caramel)
 codename caramel: C-style syntax markdown
 
 checkout branch java for its current parser generator!!
