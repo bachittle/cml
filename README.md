@@ -1,4 +1,4 @@
-# cml-parser-gen
+# cml parser gen in Java
 codename caramel: C-style syntax markdown
 
 Requires JLex and JavaCup. Instructions to installing will be added later. 
