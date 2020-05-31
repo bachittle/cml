@@ -1,0 +1,13 @@
+import cml;
+
+cml(lang="en") {
+    head {
+        // this is a comment
+        meta(charset="utf-8");
+        meta(name="viewport", content="width=device-width, initial-scale=1.0");
+        title{document}
+    }
+    body {
+        h1{Hello world!}
+    }
+}
