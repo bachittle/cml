@@ -10,17 +10,7 @@ import java.io.*;
     int nums[] = new int[5];
     while ((t=lexer.yylex())!=null) {
       System.out.println(t);
-      if (t.equals("ID")) nums[0]++;
-      if (t.equals("KEYWORD")) nums[1]++;
-      if (t.equals("NUM")) nums[2]++;
-      if (t.equals("COMMENT")) nums[3]++;
-      if (t.equals("STRING")) nums[4]++;
     }
-    System.out.println("identifiers: "+nums[0]+
-                       "\nkeywords: "+nums[1]+
-                       "\nnumbers: "+nums[2]+
-                       "\ncomments:"+nums[3]+
-                       "\nquotedString:"+nums[4]);
   }
 %}
 
