@@ -1,6 +1,8 @@
 # cml-parser-gen
 codename caramel: C-style syntax markdown
 
+checkout branch java for its current parser generator!!
+
 `index.html preview`
 ```html
 <!DOCTYPE html>
@@ -34,4 +36,3 @@ cml(lang="en") {
 }
 ```
 
-checkout a branch for different content
