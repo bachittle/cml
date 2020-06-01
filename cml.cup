@@ -1,0 +1,49 @@
+import java.io.*;
+import java.util.regex.*;
+
+terminal String IMPORT, ID, EQUALS, IDVALUE, 
+                SEPARATOR, TEXT;
+
+terminal String EMPTY_BLOCK_START, BLOCK_START, BLOCK_END;
+terminal String PARAM_START, PARAM_END, PARAM_EMPTY;
+
+non terminal String blocks, block, importStmt, paramStmt, textStmts, textStmt, params, param;  
+
+blocks ::= block:b blocks:bs {: RESULT = b + bs; :} 
+        | {: RESULT = ""; :};
+
+block ::= importStmt:i {: RESULT = i; :}
+        | paramStmt:p {: RESULT = p; :}
+        | TEXT:t {: RESULT = t + " "; :};
+
+importStmt ::= IMPORT:i {: RESULT = i.contains("cml") ? "<!DOCTYPE html>" : "<!DOCTYPE "+i.substring(7, i.length() - 1)+">"; :};
+
+paramStmt ::= PARAM_START:ps params:p PARAM_END BLOCK_START blocks:b BLOCK_END {:
+    Matcher m = Pattern.compile("[a-zA-Z][a-zA-Z0-9]*").matcher(ps);
+    while (m.find()) {
+        ps = m.group();
+    }
+    RESULT = "<"+ps+p+">"+b+"</"+ps+">";
+:}
+        | PARAM_START:ps params:p PARAM_END PARAM_EMPTY {: 
+    Matcher m = Pattern.compile("[a-zA-Z][a-zA-Z0-9]*").matcher(ps);
+    while (m.find()) {
+        ps = m.group();
+    }
+    RESULT = "<"+ps+p+">";
+:}
+        | EMPTY_BLOCK_START:p blocks:b BLOCK_END {: 
+    Matcher m = Pattern.compile("[a-zA-Z][a-zA-Z0-9]*").matcher(p);
+    while (m.find()) {
+        p = m.group();
+    }
+    RESULT = "<"+p+">"+b+"</"+p+">";        
+:};
+
+params ::= 
+        param:p SEPARATOR params:ps {: RESULT = p + ", " + ps; :}
+        | param:p {: RESULT = p; :}
+        | {: RESULT = ""; :};
+
+param ::= 
+        ID:i EQUALS IDVALUE:v {: RESULT = " " + i + "=" + v; :};

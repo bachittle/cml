@@ -3,3 +3,5 @@ java_cup
 A4.*
 *.class
 *.lex.java
+cmlParser.java
+cmlSymbol.java

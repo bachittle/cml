@@ -5,7 +5,7 @@ import java.io.*;
 %{
   // this is a tester program, not meant for production. try cml2.
   public static void main(String [] args) throws java.io.IOException {
-    cml lexer=new cml(new FileReader("index.cml"));
+    cml lexer=new cml(new FileReader("case1.cml"));
     String t;
     int nums[] = new int[5];
     while ((t=lexer.yylex())!=null) {
@@ -19,9 +19,10 @@ import java.io.*;
 %init}
 %line
 %type String
-%class cml 
 %eofval{ return null;
 %eofval}
+
+%class cml 
 %state init, comm, param, param2
 
 IMPORT = import[\040\r\n]*[a-zA-Z][a-zA-Z0-9]*[;]

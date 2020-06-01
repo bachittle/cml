@@ -1,11 +1,11 @@
-import cml;
+import html;
 // this is a normal comment
 /*
 this is a
 multiline comment
 */
 
-cml (lang="en") {
+html (lang="en") {
     head{ 
         title {hello world}
     }
