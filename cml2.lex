@@ -32,6 +32,16 @@ WHITE_SP = [\040\r\n]
 <param2>"{" {System.out.println("block start");yybegin(init); return new Symbol(cmlSymbol.BLOCK_START);}
 <init>"}" {System.out.println("block end");return new Symbol(cmlSymbol.BLOCK_END);}
 {WHITE_SP} {System.out.println("white space");}
-<init>[^\040\r\n\{\}\(\)]* {System.out.println("text: " + yytext());return new Symbol(cmlSymbol.TEXT, yytext());}
+<init>[^\040\r\n\{\}\(\)]* {
+    String text = yytext();
+    if (text.charAt(text.length() - 1) == ';') {
+        System.out.println("empty block: " + text);
+        return new Symbol(cmlSymbol.PARAM_BLOCK_EMPTY, text.substring(0, text.length() - 1));
+    }
+    else {
+        System.out.println("text: " + text);
+        return new Symbol(cmlSymbol.TEXT, text);
+    }
+}
 . {System.out.println("nothing");}
 
